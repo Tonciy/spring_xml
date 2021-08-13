@@ -5,6 +5,8 @@ import com.itheima.domain.Account;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,7 +14,9 @@ import java.util.List;
  * @author Zero
  * @date 2021/8/13-20:42
  */
+@Repository("accountDao")
 public class AccountDaoImpl implements IAccountDao {
+    @Autowired
     private QueryRunner runner;
 
     public QueryRunner getRunner() {
@@ -27,6 +31,7 @@ public class AccountDaoImpl implements IAccountDao {
         try {
             return runner.query("select * from account ", new BeanListHandler<Account>(Account.class));
         }catch (Exception e){
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }

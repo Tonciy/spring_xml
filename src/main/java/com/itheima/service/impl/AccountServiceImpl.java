@@ -3,6 +3,8 @@ package com.itheima.service.impl;
 import com.itheima.dao.IAccountDao;
 import com.itheima.domain.Account;
 import com.itheima.service.IAccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,7 +12,9 @@ import java.util.List;
  * @author Zero
  * @date 2021/8/13-20:41
  */
+@Service("accountService")
 public class AccountServiceImpl implements IAccountService {
+    @Autowired
     private IAccountDao accountDao;
 
     public IAccountDao getAccountDao() {
