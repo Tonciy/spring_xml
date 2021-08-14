@@ -1,10 +1,12 @@
 package com.itheima.test;
 
+import com.itheima.conf.SpringConfiguration;
 import com.itheima.domain.Account;
 import com.itheima.service.IAccountService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -19,7 +21,8 @@ public class AccountServiceTest {
     IAccountService as = null;
     @Before
     public  void  init(){
-        ac = new ClassPathXmlApplicationContext("bean.xml");
+//        ac = new ClassPathXmlApplicationContext("bean.xml");
+        ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         as = ac.getBean("accountService", IAccountService.class);
     }
     @Test
@@ -46,7 +49,7 @@ public class AccountServiceTest {
     public void testSave(){
         Account account = new Account();
         account.setMoney(12345f);
-        account.setName("形式咖啡机");
+        account.setName("形式111咖啡机");
         as.saveAccount(account);
     }
     @Test
