@@ -17,7 +17,7 @@ import java.util.List;
  * 使用junit单元测试
  */
 @RunWith(SpringJUnit4ClassRunner.class) // 取代main方法，换成spring提供的
-@ContextConfiguration(locations = "classpath:bean.xml")  // 告知是基于xml配置的，
+@ContextConfiguration(locations = "classpath:bean_xml.xml")  // 告知是基于xml配置的，
 public class AccountServiceTest_Spring_xml {
 //    @Autowired
 //    ApplicationContext ac = null;

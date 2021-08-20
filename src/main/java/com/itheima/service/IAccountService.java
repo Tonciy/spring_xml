@@ -41,4 +41,12 @@ public interface IAccountService {
      * @param accountId
      */
     void deleteAccount(Integer accountId);
+
+    /**
+     * 根据转入账户名和转出账户名转账
+     * @param sourceName 转入账户名
+     * @param targetName 转出账户名
+     * @param money       钱
+     */
+    void transfer(String sourceName, String targetName, Float money);
 }
