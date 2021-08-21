@@ -1,10 +1,15 @@
 package com.itheima.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /**
  * @author Zero
  * 和事务管理相关的工具类，它包含了开启事务，提交事务，回滚事务和释放链接
  */
+@Component("transactionManager")
 public class TransactionManager {
+    @Autowired
     private ConnectionUtils connectionUtils;
 
     public void setConnectionUtils(ConnectionUtils connectionUtils) {

@@ -19,6 +19,7 @@ import java.util.List;
 public class AccountDaoImpl implements IAccountDao {
     @Autowired
     private QueryRunner runner;
+    @Autowired
     private ConnectionUtils connectionUtils;
 
     public void setConnectionUtils(ConnectionUtils connectionUtils) {
