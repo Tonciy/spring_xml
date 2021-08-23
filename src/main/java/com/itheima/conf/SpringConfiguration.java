@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 @ComponentScan("com.itheima") // 指定要扫描的包
 @Import(JdbcConfiguration.class) // 告知其他子配置类
 @PropertySource("jdbc.properties") // 读取配置类
+@EnableAspectJAutoProxy // 允许开启AOP的注解配置
 public class SpringConfiguration {
 
 }

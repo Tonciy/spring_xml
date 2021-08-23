@@ -18,7 +18,7 @@ import java.util.List;
  * @author Zero
  * 用于创建Service的代理对象的工厂
  */
-@Component("beanFactory")
+//@Component("beanFactory")
 public class BeanFactory {
     @Autowired
     private IAccountService accountService;

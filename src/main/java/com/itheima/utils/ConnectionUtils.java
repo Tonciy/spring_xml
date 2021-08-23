@@ -1,7 +1,9 @@
 package com.itheima.utils;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -16,10 +18,6 @@ public class ConnectionUtils {
     private ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
     @Autowired
     private DataSource ds = null;
-
-    public DataSource getDs() {
-        return ds;
-    }
 
     public void setDs(DataSource ds) {
         this.ds = ds;
