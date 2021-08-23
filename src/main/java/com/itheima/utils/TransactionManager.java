@@ -1,5 +1,6 @@
 package com.itheima.utils;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,6 @@ public class TransactionManager {
     /**
      * 开启事务
      */
-    @Before("pt1()")
     public void beginTransaction(){
         try {
             System.out.println("开启事务");
@@ -36,7 +36,6 @@ public class TransactionManager {
     /**
      * 提交事务
      */
-    @AfterReturning("pt1()")
     public void commit(){
         try {
             System.out.println("提交事务");
@@ -49,7 +48,6 @@ public class TransactionManager {
     /**
      * 回滚事务
      */
-    @AfterThrowing("pt1()")
     public void rollback(){
         try {
             System.out.println("回滚事务");
@@ -61,7 +59,6 @@ public class TransactionManager {
     /**
      * 释放链接
      */
-    @After("pt1()")
     public void release(){
         try {
             System.out.println("释放链接");
@@ -69,6 +66,28 @@ public class TransactionManager {
             connectionUtils.removeConnection();
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+    @Around("pt1()")
+    public Object arountAdvice(ProceedingJoinPoint pj){
+        Object res = null;
+        try {
+            Object[] args = pj.getArgs();
+            // 开启事务
+            beginTransaction();
+            // 执行切入点方法
+            res = pj.proceed(args);
+            // 提交事务
+            commit();
+            // 返回值
+            return res;
+        }catch (Throwable e){
+            // 回滚事务
+            rollback();
+            throw new RuntimeException(e);
+        }finally {
+            // 释放资源
+            release();
         }
     }
 }
